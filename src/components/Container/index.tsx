@@ -1,9 +1,8 @@
 
-
-
-
 import styles from './styles.module.scss'
 import { useState, useEffect } from 'react';
+import Card from '../Card';
+
 
 type ProductsResponse = {
     products: Product[];
@@ -44,7 +43,8 @@ useEffect (() => {
  
     return (
        <div className={styles.container}>
-         {productsResponse?.products.map(item =><div key={item.id}>{item.title}</div>)}
+          {productsResponse?.products.map((item) => <Card title={item.title} img={item.images[1]} key={item.id} 
+           />)}
        </div>
        
     )
