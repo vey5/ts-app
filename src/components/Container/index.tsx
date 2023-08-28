@@ -44,7 +44,7 @@ useEffect (() => {
     return (
        <div className={styles.container}>
           {productsResponse?.products.map((item) => <Card title={item.title} img={item.images[1]} key={item.id} 
-           />)}
+              />)}
        </div>
        
     )

@@ -1,0 +1,41 @@
+.infoCard * {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 16px;
+    margin-bottom: 40px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.title {
+    font-size: 24px;
+    color: darkviolet;
+    
+}
+
+.price {
+    color: green;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.desc {
+    text-align: center;
+    font-weight: 600;
+    line-height: 30px;
+    color: darkblue;
+}
+
+.img {
+    width: 441px;
+    height: 265px;   
+}
+
+.rating {
+    color: darkred;
+    font-weight: 700;
+}
