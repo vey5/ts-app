@@ -32,7 +32,7 @@ const Container = () => {
 const [ productsResponse, setProductsResponse] = useState<ProductsResponse>()
 
 useEffect (() => {
-    fetch('https://dummyjson.com/products/?q=phone')
+    fetch('https://dummyjson.com/products')
     .then(res => res.json())
     .then((data:ProductsResponse) =>  {
          setProductsResponse(data)
@@ -44,7 +44,7 @@ useEffect (() => {
     return (
        <div className={styles.container}>
           {productsResponse?.products.map((item) => <Card title={item.title} img={item.images[1]} key={item.id} 
-              />)}
+            id={item.id}  />)}
        </div>
        
     )

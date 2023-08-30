@@ -1,11 +1,16 @@
 import styles from './styles.module.scss'
-//import Container from './components/Container';
+import { Routes, Route } from 'react-router-dom'
+import Container from './components/Container';
 import InfoCard from './components/InfoCard';
+
+
 function App() {
   return (
     <div className={styles.wrapper}>
-      {/*<Container />*/}
-      <InfoCard />
+      <Routes>
+         <Route path='/catalog' element={<Container />} />
+         <Route path='catalog/:id' element={<InfoCard />} />
+      </Routes>
       
     </div>
   );
