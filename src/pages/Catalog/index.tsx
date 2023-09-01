@@ -1,6 +1,7 @@
 import styles from './styles.module.scss'
 import { useState, useEffect } from 'react'
-import Card from '../Card'
+import { Card } from '../../components/Card'
+import { Page } from '../../components/Page'
 
 type ProductsResponse = {
   products: Product[]
@@ -23,9 +24,7 @@ type Product = {
   images: string[]
 }
 
-console.log()
-
-const Container = () => {
+const Catalog = () => {
   const [productsResponse, setProductsResponse] = useState<ProductsResponse>()
 
   useEffect(() => {
@@ -37,12 +36,14 @@ const Container = () => {
   }, [])
 
   return (
-    <div className={styles.container}>
-      {productsResponse?.products.map((item) => (
-        <Card title={item.title} img={item.images[1]} key={item.id} id={item.id} />
-      ))}
-    </div>
+    <Page>
+      <div className={styles.container}>
+        {productsResponse?.products.map((item) => (
+          <Card title={item.title} img={item.images[1]} key={item.id} id={item.id} />
+        ))}
+      </div>
+    </Page>
   )
 }
 
-export default Container
+export { Catalog }

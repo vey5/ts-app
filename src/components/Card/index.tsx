@@ -20,4 +20,4 @@ const Card = ({ title, img, id }: Props) => {
   )
 }
 
-export default Card
+export { Card }

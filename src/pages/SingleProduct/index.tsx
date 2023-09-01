@@ -1,6 +1,7 @@
 import styles from './styles.module.scss'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Page } from '../../components/Page'
 
 type Products = {
   id: number
@@ -29,15 +30,17 @@ const InfoCard = () => {
   }, [id])
 
   return (
-    <div className={styles.infoCard}>
-      <h1 className={styles.title}>{products?.title}</h1>
-      <div className={styles.price}>Price: {products?.price}$</div>
-      <p className={styles.desc}>{products?.description}</p>
-      <div>
-        <img className={styles.img} src={products?.images[1]} alt="title" />
+    <Page>
+      <div className={styles.singleProduct}>
+        <h1 className={styles.title}>{products?.title}</h1>
+        <div className={styles.price}>Price: {products?.price}$</div>
+        <p className={styles.desc}>{products?.description}</p>
+        <div>
+          <img className={styles.img} src={products?.images[1]} alt="title" />
+        </div>
+        <div className={styles.rating}>Rating: {products?.rating}</div>
       </div>
-      <div className={styles.rating}>Rating: {products?.rating}</div>
-    </div>
+    </Page>
   )
 }
 

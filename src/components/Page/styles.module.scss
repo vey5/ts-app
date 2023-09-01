@@ -1,0 +1,14 @@
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: darkslateblue;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.content {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
