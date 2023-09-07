@@ -1,8 +1,26 @@
+.headerBase {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: darkslateblue;
+  overflow: hidden;
+  z-index: 20;
+}
+
 .header {
-  height: 60px;
   color: bisque;
 }
 
 .title {
   text-align: center;
+  margin: 0;
+}
+
+.button {
+  text-align: center;
+  padding: 5px;
 }
