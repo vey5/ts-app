@@ -2,27 +2,7 @@ import styles from './styles.module.scss'
 import { useState, useEffect } from 'react'
 import { Card } from '../../components/Card'
 import { Page } from '../../components/Page'
-
-type ProductsResponse = {
-  products: Product[]
-  total: number
-  skip: number
-  limit: number
-}
-
-type Product = {
-  id: number
-  title: string
-  description: string
-  price: number
-  discountPersentage: number
-  rating: number
-  stock: number
-  brand: string
-  category: string
-  thumbnail: ' '
-  images: string[]
-}
+import { ProductsResponse } from '../../types/api'
 
 const Catalog = () => {
   const [productsResponse, setProductsResponse] = useState<ProductsResponse>()

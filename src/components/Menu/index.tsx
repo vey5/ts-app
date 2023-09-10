@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styles from './styles.module.scss'
-import { Portal } from '../Portal'
+import { Portal } from '../../pages/Portal'
+// import { Product } from '../../pages/Catalog'
 
 type Props = {
   isOpen: boolean
