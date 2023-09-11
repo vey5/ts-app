@@ -2,9 +2,19 @@
   position: absolute;
   top: 10%;
   left: 1%;
-  width: 250px;
-  height: 800px;
+  width: 232px;
+  height: 973px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 2px 2px 5px 2px;
   color: black;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  margin: 15px;
+  text-align: center;
+  gap: 10px;
+  color: darkorange;
 }

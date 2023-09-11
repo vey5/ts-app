@@ -18,3 +18,5 @@ export type Product = {
   thumbnail: ' '
   images: string[]
 }
+
+export type сategories = string[]
