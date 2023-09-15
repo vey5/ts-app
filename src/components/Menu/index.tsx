@@ -2,19 +2,20 @@ import { FC } from 'react'
 import styles from './styles.module.scss'
 import { Portal } from '../../pages/Portal'
 import { useState, useEffect } from 'react'
-import { сategories } from '../../types/api'
+import { Сategories } from '../../types/api'
+import { Link } from 'react-router-dom'
 
 type Props = {
   isOpen: boolean
 }
 
 const Menu: FC<Props> = ({ isOpen }) => {
-  const [сategories, setCategories] = useState<сategories>()
+  const [categories, setCategories] = useState<Сategories>()
 
   useEffect(() => {
-    fetch('https://dummyjson.com/products/categories')
+    fetch(`https://dummyjson.com/products/categories`)
       .then((res) => res.json())
-      .then((data: сategories) => {
+      .then((data: Сategories) => {
         setCategories(data)
       })
   }, [])
@@ -26,7 +27,11 @@ const Menu: FC<Props> = ({ isOpen }) => {
   return (
     <Portal>
       <div className={styles.modal}>
-        {сategories?.map((string) => <div className={styles.category}>{string}</div>)}
+        {categories?.map((category) => (
+          <Link className={styles.link} key={category} to={`/category/${category}`}>
+            <div className={styles.category}>{category}</div>
+          </Link>
+        ))}
       </div>
     </Portal>
   )

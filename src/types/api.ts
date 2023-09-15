@@ -19,4 +19,4 @@ export type Product = {
   images: string[]
 }
 
-export type сategories = string[]
+export type Сategories = string[]

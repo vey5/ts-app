@@ -9,7 +9,7 @@ type Props = {
 
 const Card = ({ title, img, id }: Props) => {
   return (
-    <Link to={`/catalog/${id}`}>
+    <Link className={styles.link} to={`/catalog/${id}`}>
       <div className={styles.card}>
         <div className={styles.image}>
           <img className={styles.img} src={img} alt={title} />
