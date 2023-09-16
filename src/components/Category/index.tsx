@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { ProductsResponse } from '../../types/api'
 import { Card } from '../Card'
 import { useParams } from 'react-router-dom'
+import { Page } from '../Page'
 
 const Category: FC = () => {
   const [productsResponse, setProductsResponse] = useState<ProductsResponse>()
@@ -16,11 +17,13 @@ const Category: FC = () => {
       })
   }, [category])
   return (
-    <div className={styles.category}>
-      {productsResponse?.products.map((item) => (
-        <Card title={item.title} img={item.images[1]} id={item.id} key={item.id} />
-      ))}
-    </div>
+    <Page>
+      <div className={styles.category}>
+        {productsResponse?.products.map((item) => (
+          <Card title={item.title} img={item.images[1]} id={item.id} key={item.id} />
+        ))}
+      </div>
+    </Page>
   )
 }
 
