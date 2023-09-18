@@ -2,6 +2,7 @@ import styles from './styles.module.scss'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Page } from '../../components/Page'
+import { Loader } from '../../components/Loader'
 
 type Products = {
   id: number
@@ -31,6 +32,7 @@ const InfoCard = () => {
 
   return (
     <Page>
+      <Loader />
       <div className={styles.singleProduct}>
         <h1 className={styles.title}>{products?.title}</h1>
         <div className={styles.price}>Price: {products?.price}$</div>
