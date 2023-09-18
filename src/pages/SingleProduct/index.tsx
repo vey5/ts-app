@@ -1,47 +1,39 @@
 import styles from './styles.module.scss'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 import { useParams } from 'react-router-dom'
 import { Page } from '../../components/Page'
 import { Loader } from '../../components/Loader'
+import { Product } from '../../types/api'
 
-type Products = {
-  id: number
-  title: string
-  description: string
-  price: number
-  discountPersentage: number
-  rating: number
-  stock: number
-  brand: string
-  category: string
-  thumbnail: ' '
-  images: string[]
-}
-
-const InfoCard = () => {
-  const [products, setProducts] = useState<Products>()
+const InfoCard: FC = () => {
+  const [products, setProducts] = useState<Product>()
   const { id } = useParams()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
       .then((res) => res.json())
-      .then((data: Products) => {
+      .then((data: Product) => {
         setProducts(data)
+        setIsLoading(false)
       })
   }, [id])
 
   return (
     <Page>
-      <Loader />
-      <div className={styles.singleProduct}>
-        <h1 className={styles.title}>{products?.title}</h1>
-        <div className={styles.price}>Price: {products?.price}$</div>
-        <p className={styles.desc}>{products?.description}</p>
-        <div>
-          <img className={styles.img} src={products?.images[1]} alt="title" />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className={styles.singleProduct}>
+          <h1 className={styles.title}>{products?.title}</h1>
+          <div className={styles.price}>Price: {products?.price}$</div>
+          <p className={styles.desc}>{products?.description}</p>
+          <div>
+            <img className={styles.img} src={products?.images[1]} alt="title" />
+          </div>
+          <div className={styles.rating}>Rating: {products?.rating}</div>
         </div>
-        <div className={styles.rating}>Rating: {products?.rating}</div>
-      </div>
+      )}
     </Page>
   )
 }
