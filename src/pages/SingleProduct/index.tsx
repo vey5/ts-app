@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { Page } from '../../components/Page'
 import { Loader } from '../../components/Loader'
 import { Product } from '../../types/api'
+import { Placeholder } from '../../components/Placeholder'
 
 const InfoCard: FC = () => {
   const [products, setProducts] = useState<Product>()
@@ -18,6 +19,22 @@ const InfoCard: FC = () => {
         setIsLoading(false)
       })
   }, [id])
+
+  // if (isLoading && products?.key(obj) !== 0) {
+  //   return (
+  //     <div className={styles.placeholder}>
+  //       <Placeholder />
+  //     </div>
+  //   )
+  // }
+
+  // if (isLoading) {
+  //   return (
+  //     <div className={styles.loader}>
+  //       <Loader />
+  //     </div>
+  //   )
+  // }
 
   return (
     <Page>

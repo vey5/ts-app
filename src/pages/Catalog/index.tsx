@@ -4,6 +4,7 @@ import { Card } from '../../components/Card'
 import { Page } from '../../components/Page'
 import { ProductsResponse } from '../../types/api'
 import { Loader } from '../../components/Loader'
+import { Placeholder } from '../../components/Placeholder'
 
 const Catalog: FC = () => {
   const [productsResponse, setProductsResponse] = useState<ProductsResponse>()
@@ -18,16 +19,28 @@ const Catalog: FC = () => {
       })
   }, [])
 
+  if (!isLoading && productsResponse?.products.length === 0) {
+    return (
+      <div className={styles.placeholder}>
+        <Placeholder />
+      </div>
+    )
+  }
+
+  if (isLoading) {
+    return (
+      <div className={styles.loader}>
+        <Loader />
+      </div>
+    )
+  }
+
   return (
     <Page>
       <div className={styles.container}>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          productsResponse?.products.map((item) => (
-            <Card title={item.title} img={item.images[1]} key={item.id} id={item.id} />
-          ))
-        )}
+        {productsResponse?.products.map((item) => (
+          <Card title={item.title} img={item.images[1]} key={item.id} id={item.id} />
+        ))}
       </div>
     </Page>
   )
