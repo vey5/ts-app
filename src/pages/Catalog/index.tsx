@@ -9,14 +9,35 @@ import { Placeholder } from '../../components/Placeholder'
 const Catalog: FC = () => {
   const [productsResponse, setProductsResponse] = useState<ProductsResponse>()
   const [isLoading, setIsLoading] = useState(true)
+  const [offset, setOffset] = useState(0)
+  const [fetching, setFetching] = useState(true)
 
   useEffect(() => {
-    fetch('https://dummyjson.com/products')
+    fetch(`https://dummyjson.com/products`)
       .then((res) => res.json())
       .then((data: ProductsResponse) => {
         setProductsResponse(data)
         setIsLoading(false)
+        // setOffset((prevState) => prevState + 1)
       })
+  }, [])
+
+  const scrollHandler = (e: any) => {
+    if (
+      e.target.documentElement.scrollHeight -
+        (e.target.documentElement.scrollTop + window.innerHeight) <
+      100
+    ) {
+      setFetching(true)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('scroll', scrollHandler)
+
+    return function () {
+      document.removeEventListener('scroll', scrollHandler)
+    }
   }, [])
 
   if (!isLoading && productsResponse?.products.length === 0) {
