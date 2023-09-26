@@ -4,7 +4,7 @@ import { LoaderIcon } from '../../icons/LoaderIcon'
 
 const Loader: FC = () => {
   return (
-    <div className={styles.loader}>
+    <div className={styles.circle}>
       <LoaderIcon />
     </div>
   )

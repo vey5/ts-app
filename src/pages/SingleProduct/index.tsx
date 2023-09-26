@@ -14,43 +14,44 @@ const InfoCard: FC = () => {
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
       .then((res) => res.json())
-      .then((data: Product) => {
-        setProducts(data)
-        setIsLoading(false)
-      })
+      .then(
+        (data: Product) => {
+          setProducts(data)
+          setIsLoading(false)
+        },
+        () => {
+          setIsLoading(false)
+        }
+      )
   }, [id])
 
-  // if (isLoading && products?.key(obj) !== 0) {
-  //   return (
-  //     <div className={styles.placeholder}>
-  //       <Placeholder />
-  //     </div>
-  //   )
-  // }
+  if (!isLoading && !products) {
+    return (
+      <div className={styles.placeholder}>
+        <Placeholder />
+      </div>
+    )
+  }
 
-  // if (isLoading) {
-  //   return (
-  //     <div className={styles.loader}>
-  //       <Loader />
-  //     </div>
-  //   )
-  // }
+  if (isLoading) {
+    return (
+      <div className={styles.loader}>
+        <Loader />
+      </div>
+    )
+  }
 
   return (
     <Page>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div className={styles.singleProduct}>
-          <h1 className={styles.title}>{products?.title}</h1>
-          <div className={styles.price}>Price: {products?.price}$</div>
-          <p className={styles.desc}>{products?.description}</p>
-          <div>
-            <img className={styles.img} src={products?.images[1]} alt="title" />
-          </div>
-          <div className={styles.rating}>Rating: {products?.rating}</div>
+      <div className={styles.singleProduct}>
+        <h1 className={styles.title}>{products?.title}</h1>
+        <div className={styles.price}>Price: {products?.price}$</div>
+        <p className={styles.desc}>{products?.description}</p>
+        <div>
+          <img className={styles.img} src={products?.images[1]} alt="title" />
         </div>
-      )}
+        <div className={styles.rating}>Rating: {products?.rating}</div>
+      </div>
     </Page>
   )
 }

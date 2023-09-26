@@ -15,11 +15,15 @@ const Catalog: FC = () => {
   useEffect(() => {
     fetch(`https://dummyjson.com/products`)
       .then((res) => res.json())
-      .then((data: ProductsResponse) => {
-        setProductsResponse(data)
-        setIsLoading(false)
-        // setOffset((prevState) => prevState + 1)
-      })
+      .then(
+        (data: ProductsResponse) => {
+          setProductsResponse(data)
+          setIsLoading(false)
+        },
+        () => {
+          setIsLoading(false)
+        }
+      )
   }, [])
 
   const scrollHandler = (e: any) => {
@@ -40,7 +44,7 @@ const Catalog: FC = () => {
     }
   }, [])
 
-  if (!isLoading && productsResponse?.products.length === 0) {
+  if (!isLoading && !productsResponse?.products.length) {
     return (
       <div className={styles.placeholder}>
         <Placeholder />
