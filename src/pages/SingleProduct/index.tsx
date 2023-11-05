@@ -5,8 +5,9 @@ import { Page } from '../../components/Page'
 import { Loader } from '../../components/Loader'
 import { Product } from '../../types/api'
 import { Placeholder } from '../../components/Placeholder'
+import { Slider } from '../../components/Slider'
 
-const InfoCard: FC = () => {
+const SingleProduct: FC = () => {
   const [products, setProducts] = useState<Product>()
   const { id } = useParams()
   const [isLoading, setIsLoading] = useState(true)
@@ -47,13 +48,11 @@ const InfoCard: FC = () => {
         <h1 className={styles.title}>{products?.title}</h1>
         <div className={styles.price}>Price: {products?.price}$</div>
         <p className={styles.desc}>{products?.description}</p>
-        <div>
-          <img className={styles.img} src={products?.images[1]} alt="title" />
-        </div>
+        <Slider imgs={products?.images ?? []} />
         <div className={styles.rating}>Rating: {products?.rating}</div>
       </div>
     </Page>
   )
 }
 
-export default InfoCard
+export { SingleProduct }

@@ -1,14 +1,12 @@
-.singleProduct * {
+.singleProduct {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 500px;
+  max-width: 450px;
   margin: 0 auto;
   padding: 0 16px;
-  margin-bottom: 40px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden;
+  font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
 }
 
 .title {
@@ -27,11 +25,6 @@
   font-weight: 600;
   line-height: 30px;
   color: darkblue;
-}
-
-.img {
-  width: 441px;
-  height: 265px;
 }
 
 .rating {

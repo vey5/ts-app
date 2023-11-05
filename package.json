@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-swipeable-views": "^0.13.2",
     "eslint-config-prettier": "^9.0.0",
     "prettier": "3.0.3"
   }
