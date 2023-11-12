@@ -1,6 +1,6 @@
 import styles from './styles.module.scss'
 import { useState, useEffect, FC } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Page } from '../../components/Page'
 import { Loader } from '../../components/Loader'
 import { Product } from '../../types/api'
@@ -10,7 +10,10 @@ import { Slider } from '../../components/Slider'
 const SingleProduct: FC = () => {
   const [products, setProducts] = useState<Product>()
   const { id } = useParams()
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
+
+  const back = () => navigate(-1)
 
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
@@ -45,6 +48,9 @@ const SingleProduct: FC = () => {
   return (
     <Page>
       <div className={styles.singleProduct}>
+        <div className={styles.back} onClick={back}>
+          Back
+        </div>
         <h1 className={styles.title}>{products?.title}</h1>
         <div className={styles.price}>Price: {products?.price}$</div>
         <p className={styles.desc}>{products?.description}</p>
