@@ -8,55 +8,86 @@ import { Placeholder } from '../../components/Placeholder'
 
 const Catalog: FC = () => {
   const [products, setProducts] = useState<Product[]>([])
-  const [total, setTotal] = useState(0)
+  // const [total, setTotal] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
   const [skip, setSkip] = useState(0)
 
   const requestLimit = 10
 
-  const getData = () => {
-    setIsLoading(true)
+  // const getData = () => {
+  //   setIsLoading(true)
+  //   fetch(`https://dummyjson.com/products?limit=${requestLimit}&skip=${skip}`)
+  //     .then((res) => res.json())
+  //     .then(
+  //       (data: ProductsResponse) => {
+  //         setProducts([...products, ...data.products])
+
+  //         setTotal(data.total)
+  //         setSkip(skip + requestLimit)
+  //         setIsLoading(false)
+  //       },
+  //       () => {
+  //         setIsLoading(false)
+  //       }
+  //     )
+  // }
+  useEffect(() => {
     fetch(`https://dummyjson.com/products?limit=${requestLimit}&skip=${skip}`)
       .then((res) => res.json())
       .then(
         (data: ProductsResponse) => {
           setProducts([...products, ...data.products])
-          setTotal(data.total)
-          setSkip(skip + requestLimit)
+          setSkip((prevState) => prevState)
           setIsLoading(false)
         },
         () => {
           setIsLoading(false)
         }
       )
-  }
+  }, [skip])
 
-  const scrollHandler = (event: Event) => {
-    if (isLoading) return
+  // const scrollHandler = (event: Event) => {
+  //   if (isLoading) return
 
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement
+  //   const { scrollTop, clientHeight, scrollHeight } = document.documentElement
 
-    if (scrollTop + clientHeight >= scrollHeight - 20) {
-      getData()
-    }
-  }
+  //   if (scrollTop + clientHeight >= scrollHeight - 20) {
+  //     getData()
+  //   }
+  // }
 
-  useEffect(() => {
-    document.addEventListener('scroll', scrollHandler)
+  // useEffect(() => {
+  //   document.addEventListener('scroll', scrollHandler)
 
-    return function () {
-      document.removeEventListener('scroll', scrollHandler)
-    }
-  }, [])
+  //   return function () {
+  //     document.removeEventListener('scroll', scrollHandler)
+  //   }
+  // }, [])
 
-  useEffect(() => {
-    getData()
-  }, [])
+  // useEffect(() => {
+  //   getData()
+  // }, [])
 
-  if (!isLoading && !products.length) {
+  // if (!isLoading && !products.length) {
+  //   return (
+  //     <div className={styles.placeholder}>
+  //       <Placeholder />
+  //     </div>
+  //   )
+  // }
+
+  if (!isLoading && !products) {
     return (
       <div className={styles.placeholder}>
         <Placeholder />
+      </div>
+    )
+  }
+
+  if (isLoading) {
+    return (
+      <div className={styles.loader}>
+        <Loader />
       </div>
     )
   }
@@ -68,7 +99,10 @@ const Catalog: FC = () => {
           <Card title={item.title} img={item.images[1]} key={item.id} id={item.id} />
         ))}
       </div>
-      {isLoading && <Loader />}
+      <div className={styles.paginate} onClick={() => setSkip(skip + 10)}>
+        Download
+      </div>
+      {/* {isLoading && <Loader />} */}
     </Page>
   )
 }
